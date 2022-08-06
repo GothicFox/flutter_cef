@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:webview_cef/webview_cef.dart';
+import 'package:webview_cef_example/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,12 +22,12 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    // initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String url = "https://flutter.dev/";
+    String url = "https://www.baidu.com";
     _textController.text = url;
     await _controller.initialize();
     await _controller.loadUrl(url);
@@ -47,15 +48,16 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              TextField(
-                controller: _textController,
-                onSubmitted: (url) {
-                  _textController.text = url;
-                  _controller.loadUrl(url);
-                },
-              ),
-              _controller.value ?
-              Expanded(child: Webview(_controller)) : const Text("not init"),
+              HomePage(),
+              // TextField(
+              //   controller: _textController,
+              //   onSubmitted: (url) {
+              //     _textController.text = url;
+              //     _controller.loadUrl(url);
+              //   },
+              // ),
+              // _controller.value ?
+              // Expanded(child: Webview(_controller)) : const Text("not init"),
             ],
           )),
     );
